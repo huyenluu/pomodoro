@@ -36,3 +36,10 @@ button {
   padding: 0.5rem 1rem;
   font-weight: bold;
 }
+
+:root {
+  --main-bg-navi-blue: #1e2140;
+  --red: #fd6c6f;
+  --grey: #7f83a2;
+  --grey-lighter: #d6dffd;
+}
