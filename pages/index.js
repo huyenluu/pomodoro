@@ -25,7 +25,6 @@ function App() {
                 <h1 className={styles.title}>Pomodoro</h1>
                 <Timer settings={settings} />
                 <div onClick={() => setIsModalOpen(true)}>
-                    {/* <IoSettingsOutline className={styles.icon}/> */}
                     <IoIosSettings className={styles.icon}/>
                 </div>
                 <SettingsModal

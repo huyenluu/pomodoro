@@ -1,7 +1,7 @@
-// src/Timer.js
 import React, { useState, useEffect } from 'react';
 import CircularProgress from './CircularProgressBar';
-import styles from "../styles/Settings.module.css"
+import styles from "../styles/Index.module.css"
+import ButtonGroup from './ButtonGroup';
 
 const MODES = {
     POMODORO: { label: 'Pomodoro', minutes: 25 },
@@ -11,6 +11,7 @@ const MODES = {
 
 function Timer() {
     const [mode, setMode] = useState(MODES.POMODORO);
+    const [activeTab, setActiveTab] = useState("pomodoro");
     const [minutes, setMinutes] = useState(mode.minutes);
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
@@ -45,29 +46,36 @@ function Timer() {
             clearInterval(interval);
         };
     }, [isActive, seconds]);
+    const handleTabChange = (tab) => {
+        setActiveTab(tab)
+        if(tab==='pomodoro') {
+            setMode(MODES.POMODORO)
+        }else if(tab==='shortBreak') {
+            setMode(MODES.SHORT_BREAK)
+        }else {
+            setMode(MODES.LONG_BREAK)
+        }
+    }
 
     return (
         <div>
+            <ButtonGroup
+                activeTab={activeTab}
+                onTabChange={(tab) => handleTabChange(tab)}
+            />
             <CircularProgress progress={progress}>
-                <h2 className={styles.timerDisplay}>
-                    {String(minutes).padStart(2, '0')}:
-                    {String(seconds).padStart(2, '0')}
-                </h2>
-                <button onClick={() => setIsActive(!isActive)}>
-                    {isActive ? 'Pause' : 'Start'}
-                </button>
+                <div className={styles.timerContainer}>
+                    <h2 className={styles.timerDisplay}>
+                        {String(minutes).padStart(2, '0')}:
+                        {String(seconds).padStart(2, '0')}
+                    </h2>
+                    <div
+                        className={styles.actionBtn}
+                        onClick={() => setIsActive(!isActive)}>
+                        {isActive ? 'Pause' : 'Start'}
+                    </div>
+                </div>
             </CircularProgress>
-            <div>
-                <button onClick={() => setMode(MODES.POMODORO)}>
-                    Pomodoro
-                </button>
-                <button onClick={() => setMode(MODES.SHORT_BREAK)}>
-                    Short Break
-                </button>
-                <button onClick={() => setMode(MODES.LONG_BREAK)}>
-                    Long Break
-                </button>
-            </div>
         </div>
     );
 }
