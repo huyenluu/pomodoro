@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Timer from '../components/Timer';
 import SettingsModal from '../components/SettingsModal';
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Index.module.css";
+import { IoIosSettings } from "react-icons/io"
 
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,9 +22,12 @@ function App() {
     };
     return (
         <div className={styles.App}>
-                <h1>Pomodoro Timer</h1>
+                <h1 className={styles.title}>Pomodoro</h1>
                 <Timer settings={settings} />
-                <button onClick={() => setIsModalOpen(true)}>Settings</button>
+                <div onClick={() => setIsModalOpen(true)}>
+                    {/* <IoSettingsOutline className={styles.icon}/> */}
+                    <IoIosSettings className={styles.icon}/>
+                </div>
                 <SettingsModal
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}

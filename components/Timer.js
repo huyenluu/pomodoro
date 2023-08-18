@@ -1,7 +1,7 @@
 // src/Timer.js
 import React, { useState, useEffect } from 'react';
 import CircularProgress from './CircularProgressBar';
-import styles from "../styles/Home.module.css"
+import styles from "../styles/Settings.module.css"
 
 const MODES = {
     POMODORO: { label: 'Pomodoro', minutes: 25 },

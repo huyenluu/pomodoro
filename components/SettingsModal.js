@@ -1,6 +1,6 @@
 // src/SettingsModal.js
 import React from 'react';
-import styles from "../styles/Home.module.css"
+import styles from "../styles/Settings.module.css"
 
 function SettingsModal({ isOpen, onClose, settings, updateSettings }) {
     if (!isOpen) {

@@ -1,12 +1,5 @@
 
-.App{
-  background-color: var(--main-bg-navi-blue);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-}
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -26,13 +19,6 @@
   width: 70%;
   max-width: 500px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-.circularContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
 .timerDisplay {

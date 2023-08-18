@@ -1,0 +1,23 @@
+@values variables: "./Variables.module.css";
+@values navi-blue, grey-lighter, grey from variables;
+@values text-grey-light from variables;
+
+.App {
+    background-color: navi-blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.title {
+    composes: text-grey-light;
+}
+
+.icon {
+    compose: text-grey-light;
+    fill: grey;
+    width: 2rem;
+    height: 2rem;
+}

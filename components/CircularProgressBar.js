@@ -1,6 +1,6 @@
 // src/CircularProgress.js
 import React from 'react';
-import styles from "../styles/Home.module.css"
+import styles from "../styles/ProgressBar.module.css"
 
 const STROKE_WIDTH = 10;
 const RADIUS = 50;
