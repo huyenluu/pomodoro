@@ -7,7 +7,7 @@ export const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width:100%;
+  width: 100%;
   flex-direction: column;
   overflow: hidden;
   padding: 5rem 1.5rem;
@@ -22,7 +22,7 @@ export const AppContainer = styled.div`
     cursor: pointer;
   }
   .timer-container {
-    width:100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,7 +40,7 @@ export const TabBar = styled.div`
   border-radius: 1.75rem;
   overflow: hidden;
   background-color: ${(props) => props.theme.colors.greyDark};
-  width:100%;
+  width: 100%;
   max-width: 500px;
   button {
     flex-grow: 1;
@@ -52,7 +52,7 @@ export const TabBar = styled.div`
     border-radius: 1.75rem;
     color: ${(props) => props.theme.colors.grey};
     font-weight: 600;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 `;
 

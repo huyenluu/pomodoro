@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
-import { useTheme } from 'styled-components';
+import { useTheme } from "styled-components";
 
 export const SettingsContext = createContext();
 
 const SettingsProviderComponent = ({ children }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const initialSettings = {
     pomodoro: 25,
     shortBreak: 5,
@@ -12,9 +12,9 @@ const SettingsProviderComponent = ({ children }) => {
     font: theme.fonts.fontOpenSans,
     color: theme.colors.tomato,
   };
-  const [settings, setSettings] = useState(initialSettings)
+  const [settings, setSettings] = useState(initialSettings);
   return (
-    <SettingsContext.Provider value={{settings, setSettings}}>
+    <SettingsContext.Provider value={{ settings, setSettings }}>
       {children}
     </SettingsContext.Provider>
   );

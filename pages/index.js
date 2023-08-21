@@ -8,7 +8,7 @@ import { SettingsProvider } from "../context/SettingContext";
 
 //to-do: check responsiveness
 //to-do: handle timer finish state
-const Main = dynamic(() => import('../components/Main'),{ssr: false})
+const Main = dynamic(() => import("../components/Main"), { ssr: false });
 function App() {
   return (
     <>

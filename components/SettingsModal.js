@@ -24,8 +24,8 @@ function SettingsModal({ isOpen, onClose }) {
     }));
   };
   const handleSubmit = () => {
-    setSettings(values)
-    onClose()
+    setSettings(values);
+    onClose();
   };
 
   return (

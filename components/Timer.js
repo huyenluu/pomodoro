@@ -22,10 +22,9 @@ function Timer() {
   const elapsedSeconds = mode.minutes * 60 - minutes * 60 - seconds;
   const progress = (elapsedSeconds / totalSeconds) * 100;
 
-
   useEffect(() => {
-    handleTabChange(activeTab)
-}, [settings, activeTab]);
+    handleTabChange(activeTab);
+  }, [settings, activeTab]);
 
   useEffect(() => {
     setMinutes(mode.minutes);
@@ -67,8 +66,8 @@ function Timer() {
     }
   };
   const handleRestart = () => {
-    handleTabChange(activeTab)
-  }
+    handleTabChange(activeTab);
+  };
   const isTimerFinished = minutes === 0 && seconds === 0;
 
   return (
@@ -94,14 +93,12 @@ function Timer() {
           )}
           {!isTimerFinished && (
             <ActionButton onClick={() => setIsActive(!isActive)}>
-            {isActive ? "Pause" : "Start"}
-          </ActionButton>
+              {isActive ? "Pause" : "Start"}
+            </ActionButton>
           )}
-          {
-            isTimerFinished && <ActionButton onClick={handleRestart}>
-            Restart
-          </ActionButton>
-          }
+          {isTimerFinished && (
+            <ActionButton onClick={handleRestart}>Restart</ActionButton>
+          )}
         </div>
       </CircularProgress>
     </div>
