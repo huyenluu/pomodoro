@@ -16,3 +16,15 @@ export const theme = {
     fontRoboto: "'Roboto Mono', sans-serif",
   },
 };
+
+const breakpoints = {
+  small: 480,
+  medium: 768,
+  large: 1024
+};
+
+export const media = {
+  small: `(max-width: ${breakpoints.small}px)`,
+  medium: `(max-width: ${breakpoints.medium}px)`,
+  large: `(max-width: ${breakpoints.large}px)`
+};

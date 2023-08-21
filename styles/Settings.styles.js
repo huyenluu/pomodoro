@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {media} from "./Theme.style";
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -48,6 +49,12 @@ export const ModalOverlay = styled.div`
       padding-block: 1.5rem;
       width: 100%;
     }
+    .settings {
+      @media ${media.small} {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
     .settings,
     .font {
       border-bottom: 1px solid grey-blue;
@@ -66,6 +73,9 @@ export const ModalOverlay = styled.div`
       display: flex;
       flex-direction: column;
       width: 30%;
+      @media ${media.small} {
+        width: 100%;
+      }
     }
   }
 `;

@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import { CircularContent } from "../styles/Index.styles";
 import { useTheme } from "styled-components";
 
-//to-do recalculate RASDIUS
 function CircularProgress({
   progress,
   mainColor,
-  size = 500,
+  size = 480,
   strokeWidth = 10,
   children,
 }) {
@@ -31,8 +30,8 @@ function CircularProgress({
 
   return (
     <motion.svg
-      width="100%"
-      height="100%"
+      width={size}
+      height={size}
       viewBox={`0 0 ${size} ${size}`}
       className="timer-svg"
     >

@@ -10,7 +10,7 @@ import {
 } from "../styles/Settings.styles";
 import { SettingsContext } from "../context/SettingContext";
 
-//to-do: handle setting changes
+
 function SettingsModal({ isOpen, onClose }) {
   const { settings, setSettings } = useContext(SettingsContext);
   const [values, setValues] = useState(settings);

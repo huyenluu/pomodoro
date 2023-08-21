@@ -6,14 +6,11 @@ import { IoIosSettings } from "react-icons/io";
 import { AppContainer } from "../styles/Index.styles";
 import { SettingsContext } from "../context/SettingContext";
 
-//to-do: check responsiveness
-//to-do: handle timer finish state
-
 function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { settings } = useContext(SettingsContext);
   return (
-    <AppContainer font={settings.font}>
+    <AppContainer $font={settings.font}>
       <h1 className="title">Pomodoro</h1>
       <Timer />
       <div onClick={() => setIsModalOpen(true)}>

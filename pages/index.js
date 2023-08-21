@@ -4,11 +4,10 @@ import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/Theme.style";
 import { SettingsProvider } from "../context/SettingContext";
-//import Main from "../components/Main"
+import Main from "../components/Main"
 
-//to-do: check responsiveness
-//to-do: handle timer finish state
-const Main = dynamic(() => import("../components/Main"), { ssr: false });
+
+//const Main = dynamic(() => import("../components/Main"), { ssr: true });
 function App() {
   return (
     <>

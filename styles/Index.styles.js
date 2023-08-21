@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import {media} from "./Theme.style";
 
 export const AppContainer = styled.div`
-  font-family: ${(props) => props.font};
+  font-family: ${(props) => props.$font};
   background-color: ${(props) => props.theme.colors.naviBlue};
   display: flex;
   justify-content: center;
@@ -36,6 +37,7 @@ export const AppContainer = styled.div`
 // Button Group
 
 export const TabBar = styled.div`
+  position: relative;
   display: flex;
   border-radius: 1.75rem;
   overflow: hidden;
@@ -43,6 +45,9 @@ export const TabBar = styled.div`
   width: 100%;
   max-width: 500px;
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-grow: 1;
     padding: 16px 20px;
     border: none;
@@ -52,7 +57,10 @@ export const TabBar = styled.div`
     border-radius: 1.75rem;
     color: ${(props) => props.theme.colors.grey};
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 1rem;
+    @media ${media.small} {
+      font-size: .75rem;
+    }
   }
 `;
 
@@ -62,6 +70,7 @@ export const CircularContent = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  width:100%;
   .time-container {
     position: relative;
   }

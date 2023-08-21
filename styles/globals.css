@@ -98,3 +98,8 @@ button,
 [type="submit"] {
   -webkit-appearance: button;
 }
+button:active, button:focus {
+  background-color: transparent; /* or any desired color */
+  outline: none;  /* to remove any browser-specific focus outlines */
+  box-shadow: none;  /* to remove any focus shadow */
+}
