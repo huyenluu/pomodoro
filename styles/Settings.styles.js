@@ -19,6 +19,11 @@ export const ModalOverlay = styled.div`
     max-width: 500px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     color: ${(props) => props.theme.colors.greyDark};
+    @media ${media.small} {
+      width: 90%;
+      max-height: 70vh;
+      overflow-y: auto; 
+    }
   }
   .header {
     display: flex;
@@ -73,9 +78,16 @@ export const ModalOverlay = styled.div`
       display: flex;
       flex-direction: column;
       width: 30%;
+      position: relative;
       @media ${media.small} {
         width: 100%;
       }
+    }
+    .error-message {
+      color: red;
+      position:absolute;
+      right: 0;
+      bottom:0;
     }
   }
 `;
