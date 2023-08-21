@@ -1,70 +1,94 @@
 // src/SettingsModal.js
-import React from 'react';
-import styles from "../styles/Settings.module.css"
+import React, { useContext, useState } from "react";
+import { GrClose } from "react-icons/gr";
+import CustomSelect from "./CustomSelect";
+import {
+  ModalOverlay,
+  Label,
+  Input,
+  SubmitBtn,
+} from "../styles/Settings.styles";
+import { SettingsContext } from "../context/SettingContext";
 
-function SettingsModal({ isOpen, onClose, settings, updateSettings }) {
-    if (!isOpen) {
-        return null;
-    }
+//to-do: handle setting changes
+function SettingsModal({ isOpen, onClose }) {
+  if (!isOpen) {
+    return null;
+  }
+  const { settings, setSettings } = useContext(SettingsContext);
+  const [values, setValues] = useState(settings);
+  const updateSettings = (key, value) => {
+    setValues((prevSettings) => ({
+      ...prevSettings,
+      [key]: value,
+    }));
+  };
+  const handleSubmit = () => {
+    setSettings(values)
+    onClose()
+  };
 
-    return (
-        <div className={styles.modalOverlay}>
-            <div className={styles.modalContent}>
-                <header>
-                    <h2>Settings</h2>
-                    <button onClick={onClose}>Close</button>
-                </header>
-                <section>
-                    <div>
-                        <h3>Time (minutes)</h3>
-                        <label>
-                            Pomodoro:
-                            <input 
-                                type="number" 
-                                value={settings.pomodoro} 
-                                onChange={(e) => updateSettings('pomodoro', e.target.value)} 
-                            />
-                        </label>
-                        <label>
-                            Short Break:
-                            <input 
-                                type="number" 
-                                value={settings.shortBreak} 
-                                onChange={(e) => updateSettings('shortBreak', e.target.value)} 
-                            />
-                        </label>
-                        <label>
-                            Long Break:
-                            <input 
-                                type="number" 
-                                value={settings.longBreak} 
-                                onChange={(e) => updateSettings('longBreak', e.target.value)} 
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <h3>Font</h3>
-                        <select 
-                            value={settings.font} 
-                            onChange={(e) => updateSettings('font', e.target.value)}
-                        >
-                            <option value="Arial">Arial</option>
-                            <option value="Times New Roman">Times New Roman</option>
-                            <option value="Courier New">Courier New</option>
-                        </select>
-                    </div>
-                    <div>
-                        <h3>Timer Color</h3>
-                        <input 
-                            type="color" 
-                            value={settings.color} 
-                            onChange={(e) => updateSettings('color', e.target.value)}
-                        />
-                    </div>
-                </section>
+  return (
+    <ModalOverlay>
+      <div className="modalContent">
+        <header className="header">
+          <h2>Settings</h2>
+          <GrClose className="icon-close" onClick={onClose} />
+        </header>
+        <div className="main">
+          <div className="settings">
+            <h3 className="settings-title title-w-full">Time (minutes)</h3>
+            <div className="fieldset">
+              <Label htmlFor="pomodoro">Pomodoro</Label>
+              <Input
+                name="pomodoro"
+                type="number"
+                value={values.pomodoro}
+                onChange={(e) => updateSettings("pomodoro", e.target.value)}
+              />
             </div>
+            <div className="fieldset">
+              <Label htmlFor="shortBreak">Short Break</Label>
+              <Input
+                type="number"
+                value={values.shortBreak}
+                name="shortBreak"
+                onChange={(e) => updateSettings("shortBreak", e.target.value)}
+              />
+            </div>
+            <div className="fieldset">
+              <Label htmlFor="longBreak">Long Break</Label>
+              <Input
+                type="number"
+                value={values.longBreak}
+                name="longBreak"
+                onChange={(e) => updateSettings("longBreak", e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="font">
+            <h3 className="settingsTitle">Font</h3>
+            <CustomSelect
+              handleSelect={(type, value) => updateSettings(type, value)}
+              fontSelected={values.font}
+              key="font"
+              type="font"
+            />
+          </div>
+          <div className="color">
+            <h3 className="settingsTitle">Color</h3>
+            <CustomSelect
+              handleSelect={(type, value) => updateSettings(type, value)}
+              colorSelected={values.color}
+              key="color"
+              type="color"
+            />
+          </div>
+          <SubmitBtn onClick={handleSubmit}>Apply</SubmitBtn>
         </div>
-    );
+      </div>
+    </ModalOverlay>
+  );
 }
 
 export default SettingsModal;

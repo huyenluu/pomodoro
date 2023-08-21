@@ -1,27 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import styles from "../styles/Index.module.css"
+import { useTheme } from 'styled-components';
+import { TabBar } from '../styles/Index.styles';
 
-const buttonVariants = {
-    inactive: {
-        backgroundColor: 'transparent',
-        color: '#7f83a2',
-        transition: {
-            duration: 0.3
-        }
-    },
-    active: {
-        backgroundColor: 'rgb(247 111 114)',
-        color: 'rgb(21 25 50)',
-        transition: {
-            duration: 0.3
-        }
-    }
-};
 
-function ButtonGroup({ activeTab, onTabChange }) {
+
+function ButtonGroup({ activeTab, onTabChange, mainColor }) {
+    const theme = useTheme();
+    const buttonVariants = {
+        inactive: {
+            backgroundColor: 'transparent',
+            color: theme.colors.greyLight,
+            transition: {
+                duration: 1,
+                easy: 'easeInOut'
+            }
+        },
+        active: {
+            backgroundColor: mainColor,
+            color: theme.colors.naviBlue,
+            transition: {
+                duration: 1,
+                ease: 'easeInOut'
+            }
+        }
+    };
     return (
-        <div className={styles.tabBar}>
+        <TabBar>
             <motion.button 
                 onClick={() => onTabChange("pomodoro")}
                 variants={buttonVariants}
@@ -46,7 +51,7 @@ function ButtonGroup({ activeTab, onTabChange }) {
             >
                 Long Break
             </motion.button>
-        </div>
+        </TabBar>
     );
 }
 

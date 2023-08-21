@@ -1,9 +1,13 @@
-import React from 'react';
-import styles from "../styles/Index.module.css";
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
+import { CircularContent } from '../styles/Index.styles';
+import { useTheme } from 'styled-components';
 
-function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) {
-    const RADIUS = (size / 2) - (strokeWidth / 2);
+
+//to-do recalculate RASDIUS
+function CircularProgress({ progress ,mainColor, size = 500, strokeWidth = 10, children }) {
+    const theme = useTheme();
+    const RADIUS = (size / 2) - (strokeWidth / 2) - 80; // 80px are reserved space for shadow
     const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
     const progressInPercentage = (progress * CIRCUMFERENCE) / 100;
     const offset = CIRCUMFERENCE - progressInPercentage;
@@ -14,7 +18,7 @@ function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) 
             strokeDashoffset: offset,
             opacity: 1,
             transition: {
-                strokeDashoffset: { type: "spring", duration: 1.5, bounce: 0 },
+                strokeDashoffset: { type: "linear", duration: 1 },
                 opacity: { duration: 0.01 }
             }
         }
@@ -22,8 +26,10 @@ function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) 
 
     return (
         <motion.svg 
-            width={size} 
-            height={size}
+            width='100%' 
+            height='100%'
+            viewBox={`0 0 ${size} ${size}`}
+            className="timer-svg"
         >
             {/* Shadow Filter */}
             <defs>
@@ -38,11 +44,12 @@ function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) 
                     <stop offset="100%" style={{stopColor: 'rgb(40 44 83)', stopOpacity:1}} />
                 </linearGradient>
             </defs>
+            {/*Outside circle with shadow: one with top lighter shadow and another one with bottom darken shadow*/}
             <circle
                 fill="none"
                 stroke="url(#gradient)"
                 strokeWidth={strokeWidth*2}
-                r={RADIUS-80}
+                r={RADIUS + strokeWidth}
                 cx={size / 2}
                 cy={size / 2}
                 filter="url(#shadow)"
@@ -51,15 +58,15 @@ function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) 
                 fill="none"
                 stroke="url(#gradient)"
                 strokeWidth={strokeWidth*2}
-                r={RADIUS-80}
+                r={RADIUS + strokeWidth}
                 cx={size / 2}
                 cy={size / 2}
                 filter="url(#shadowdark)"
             />
             {/* Mask circle to hide inside shadow */}
             <circle
-                fill="rgb(21 25 50)"  // Use the background color of your app here
-                r={RADIUS-80-strokeWidth+6}
+                fill={theme.colors.naviBlue}
+                r={RADIUS-strokeWidth + 6}
                 cx={size / 2}
                 cy={size / 2}
             />
@@ -67,10 +74,10 @@ function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) 
             <motion.circle
                 initial="hidden"
                 animate="visible"
-                stroke="rgb(247 111 114)"
+                stroke={mainColor}
                 fill="transparent"
                 strokeWidth={strokeWidth}
-                r={RADIUS - 80 - strokeWidth - 7}
+                r={RADIUS}
                 cx={size / 2}
                 cy={size / 2}
                 strokeLinecap="round"
@@ -79,9 +86,9 @@ function CircularProgress({ progress, size = 500, strokeWidth = 10, children }) 
                 variants={draw}
             />
             <foreignObject x={(size - (size - strokeWidth)) / 2} y={(size - (size - strokeWidth)) / 2} width={size - strokeWidth} height={size - strokeWidth}>
-                <div className={styles.circularContent}>
+                <CircularContent>
                     {children}
-                </div>
+                </CircularContent>
             </foreignObject>
         </motion.svg>
     );

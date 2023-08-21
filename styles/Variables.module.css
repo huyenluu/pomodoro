@@ -1,9 +1,0 @@
-@value navi-blue: #1e2140;
-@value red: rgb(247 111 114);
-@value grey: #7f83a2;
-@value grey-lighter: #d6dffd;
-@value grey-dark: rgb(21 25 50);
-
-.text-grey-light {
-    color: grey-lighter;
-}
